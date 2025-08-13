@@ -25,11 +25,11 @@ const Hero = () => {
 
             <TextGenerateEffect
               className="text-center text-[40px] md:text-5xl lg:text-6xl"
-              words="Hi, I&apos;m Rusheen - a programmer, lifelong learner, and F1 enthusiast."
+              words="Hey, I&apos;m Rusheen - a programmer and lifelong learner."
             />
 
             <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-              Just trying to build cool stuff that people enjoy using.
+              Student @ Rutgers University
             </p>
 
             <a href="#about">
