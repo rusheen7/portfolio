@@ -70,7 +70,7 @@ export const BentoGridItem = ({
     >
       <div className={`${id === 6 && 'flex justify-center'} h-full`}>
         <div className="w-full h-full absolute">
-          {img && (
+          {img && id !== 1 && (
             <img 
               src={img}
               alt={img}
@@ -78,6 +78,15 @@ export const BentoGridItem = ({
             />
           )}
         </div>
+        {id === 1 && img && (
+          <div className="absolute bottom-5 right-5 lg:bottom-10 lg:right-10 z-10">
+            <img 
+              src={img}
+              alt="profile"
+              className="w-48 h-48 lg:w-64 lg:h-64 rounded-2xl object-cover border-2 border-white/[0.1] shadow-lg"
+            />
+          </div>
+        )}
         <div className={`absolute right-0 -bottom-5 ${id === 5 && 'w-full opacity-80'}`}>
           {spareImg && (
             <img 
@@ -96,12 +105,30 @@ export const BentoGridItem = ({
         <div className={cn(
           titleClassName, 'group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10'
         )}>
-          <div className="font-sans font-extralight text-[#c1c2d3] text-sm md:text-xs lg:text-base z-10">
-            {description}
-          </div>
-          <div className="font-sans font-bold text-lg lg:text-3xl max-w-96 z-10">
-            {title}
-          </div>
+          {id === 1 ? (
+            <>
+              <div className="font-sans font-bold text-lg lg:text-3xl mb-4 z-10">
+                {title}
+              </div>
+              <div className="font-sans text-[#c1c2d3] text-sm md:text-sm lg:text-lg z-10 leading-relaxed">
+                <div className="relative">
+                  {typeof description === 'string' ? description.split('\n').map((text, index) => (
+                    <p key={index} className="mb-4 [text-wrap:balance]">{text}</p>
+                  )) : description}
+                  <div className="w-[280px] lg:w-[300px] h-[280px] lg:h-[300px] float-right ml-4 mb-4" />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="font-sans font-extralight text-[#c1c2d3] text-sm md:text-xs lg:text-base z-10">
+                {description}
+              </div>
+              <div className="font-sans font-bold text-lg lg:text-3xl max-w-96 z-10">
+                {title}
+              </div>
+            </>
+          )}
 
           {id === 2 && <GlobeDemo />}
 
@@ -140,7 +167,7 @@ export const BentoGridItem = ({
               </div>
 
               <MagicButton 
-                title={copied ? 'Email Copied!' : 'Copy Me Email'}
+                title={copied ? 'Email Copied!' : 'Copy My Email'}
                 icon={<IoCopyOutline />}
                 position="left"
                 otherClasses="!bg-[#161a31]"
